@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.db
+.env
+*.pdf
+static/filled_pdfs/*
+static/word_docs/*
