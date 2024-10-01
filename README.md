@@ -76,132 +76,102 @@ Features
 
 Execution
 To run the application, use the following command in your terminal:
-```bash
-uvicorn main:app --reload
+```cmd
+python -m uvicorn main:app --reload --host localhost --port 8080
 ```
-The application will be accessible at `http://127.0.0.1:8000`.
+The application will be accessible at `http://localhost:8080/`.
 
 API Endpoints
-- **Upload File**: `POST /upload/` - Uploads a file (currently a placeholder).
-- **Generate PDF**: `POST /generate-pdf/` - Generates a PDF from provided company data.
-- **Generate DOCX**: `POST /generate-docx/` - Generates a DOCX from provided company data.
+- Upload File: `POST /upload/` - Uploads a file (currently a placeholder).
+- Generate PDF: `POST /generate-pdf/` - Generates a PDF from provided company data.
+- Generate DOCX: `POST /generate-docx/` - Generates a DOCX from provided company data.
+
+Sure! Here’s the updated version with the new sample input and output data structured as you requested. I've rephrased and summarized the information accordingly.
+
+---
 
 Example Input
 The following JSON structure can be used to test the PDF and DOCX generation endpoints:
-json
-{
-    "company_name": "Example Corp",
-    "founded": "2001",
-    "ceo": "Jane Doe",
-    "industry": "Technology",
-    "main_products": "Software, Hardware",
-    "number_of_employees": "500",
-    "headquarters": "New York, NY",
-    "website": "www.example.com",
-    "revenue": 1000000,
-    "operating_income": 200000,
-    "net_income": 150000,
-    "total_assets": 5000000,
-    "total_liabilities": 2000000,
-    "total_equity": 3000000,
-    "market_capitalization": 4000000,
-    "stock_exchange": "NYSE",
-    "profit_margin": "15%",
-    "return_on_equity": "10%",
-    "debt_to_equity_ratio": "0.67",
-    "current_ratio": "1.5",
-    "pe_ratio": "20",
-    "dividend_yield": "2%",
-    "revenue_growth": "5%",
-    "rd_expenses": 100000,
-    "customer_acquisition_cost": 200,
-    "customer_lifetime_value": 1000,
-    "market_share": "10%",
-    "competitors": "Competitor A, Competitor B",
-    "future_outlook": "Growth expected in the next quarter.",
-    "recent_news": "1. New product launch.<br/>2. Expansion to Europe.<br/>3. Strategic partnership with Company B.",
-    "esg_initiatives": "1. Carbon footprint reduction.<br/>2. Community engagement programs."
-}
-```
 
----
-Test Results Report
-
-Test Cases
-| Test Case                | Input                                    | Expected Result                           | Actual Result                             | Status      |
-|------------------------- |------------------------------------------|------------------------------------------|------------------------------------------|-------------|
-| Generate PDF             | Valid company data                       | PDF file created successfully            | PDF file created successfully            | Pass        |
-| Generate DOCX            | Valid company data                       | DOCX file created successfully           | DOCX file created successfully           | Pass        |
-| Upload File              | Any file type                           | Success message returned                 | Success message returned                 | Pass        |
-| Generate PDF             | Invalid company data (missing fields)   | 422 Unprocessable Entity error           | 422 Unprocessable Entity error           | Pass        |
-| Generate DOCX            | Invalid company data (invalid types)    | 422 Unprocessable Entity error           | 422 Unprocessable Entity error           | Pass        |
-
-Summary
-All tested functionalities worked as expected, producing the desired output for valid inputs and appropriate errors for invalid inputs.
-
----
-
-## Output File Examples
-
-1. PDF Example: `Example_Corp_info.pdf`
-   - The PDF file includes structured tables and styled text containing company information, financial metrics, and market outlook.
-
-2. DOCX Example: `Example_Corp_template.docx`
-   - The DOCX file contains placeholders for company data, structured in a table format.
-
----
-
-Sample Input and Output Data
-
-Sample Input Data
 ```json
 {
-    "company_name": "Tech Innovators Inc.",
-    "founded": "2010",
-    "ceo": "John Smith",
-    "industry": "Software Development",
-    "main_products": "Custom Software Solutions",
-    "number_of_employees": "250",
-    "headquarters": "San Francisco, CA",
-    "website": "www.techinnovators.com",
-    "revenue": 3000000,
-    "operating_income": 800000,
-    "net_income": 600000,
-    "total_assets": 10000000,
-    "total_liabilities": 4000000,
-    "total_equity": 6000000,
-    "market_capitalization": 8000000,
-    "stock_exchange": "NASDAQ",
-    "profit_margin": "20%",
-    "return_on_equity": "12%",
-    "debt_to_equity_ratio": "0.67",
-    "current_ratio": "2.0",
-    "pe_ratio": "15",
-    "dividend_yield": "0%",
-    "revenue_growth": "10%",
-    "rd_expenses": 500000,
-    "customer_acquisition_cost": 150,
-    "customer_lifetime_value": 1200,
-    "market_share": "5%",
-    "competitors": "Innovative Solutions LLC, Future Tech",
-    "future_outlook": "Steady growth with expansion plans.",
-    "recent_news": "1. Expanded services to Europe.<br/>2. Acquired a startup.<br/>3. Launched a new product line.",
-    "esg_initiatives": "1. Implemented green practices.<br/>2. Diversity and inclusion programs."
+    "company_name": "WECOMMIT dummy Inc.",
+    "founded": "2005-03-15",
+    "industry": "Information Technology",
+    "net_income": 52000000,
+    "financial_ratios": {
+        "profit_margin": "11.56%",
+        "current_ratio": 2.5,
+        "debt_to_equity_ratio": 0.60
+    },
+    "future_outlook": [
+        "Asian market expansion next fiscal year",
+        "Focus on sustainable tech",
+        "20% growth expected in cloud services"
+    ],
+    "main_products": "Cloud Computing Services, AI Solutions, Data Analytics Tools",
+    "customer_lifetime_value": 50000,
+    "carbon_neutrality": {
+        "target_year": "2030",
+        "goal": "Achieve net-zero carbon emissions across all operations and supply chain"
+    },
+    "board_representation": {
+        "women_on_board": {
+            "number": 40,
+            "percentage": "40%"
+        },
+        "women_in_leadership": "Data not provided"
+    },
+    "cloud_services_growth_rate": "20%",
+    "years_since_founded": 19
 }
 ```
 
-Sample Output Data
-PDF Output: Contains structured tables with company details:
-- Company Name: Tech Innovators Inc.
-- Founded: 2010
-- CEO: John Smith
-- Industry: Software Development
-- Main Products: Custom Software Solutions
-- Number of Employees: 250
-- Headquarters: San Francisco, CA
-- Website: www.techinnovators.com
-- Financial Metrics: Revenue, Operating Income, Net Income, etc.
+---
 
-DOCX Output: Contains structured sections with placeholders for each data field.
+Sample Output Data
+
+PDF Output: The generated PDF contains structured tables and styled text with the following details:
+
+- Company Name: WECOMMIT dummy Inc.
+- Founded: 2005-03-15
+- Industry: Information Technology
+- Net Income: $52,000,000
+
+Financial Ratios:
+1. Profit Margin**: 11.56%
+2. Current Ratio: 2.5
+3. Debt to Equity Ratio: 0.60
+
+Future Outlook Summary:
+1. Asian market expansion next fiscal year
+2. Focus on sustainable tech
+3. 20% growth expected in cloud services
+
+Main Products: Cloud Computing Services, AI Solutions, Data Analytics Tools  
+Customer Lifetime Value: $50,000  
+
+---
+
+### FAQs in Output
+
+- Q: What is WECOMMIT dummy Inc.'s specific target year for achieving carbon neutrality, and what does this goal entail?  
+  A: 
+  - Target Year: By the end of 2030  
+  - Goal: Achieve net-zero carbon emissions across all operations and supply chain  
+
+- Q: How many women are on the board of directors of WECOMMIT dummy Inc., and what percentage of the board does this represent? Additionally, what is the representation of women in executive leadership positions?  
+  A: Based solely on the statement "40% of board members are women," we cannot provide complete answers to the questions asked.  
+
+- Q: What is the projected growth rate for WECOMMIT dummy Inc.'s cloud services division in the upcoming fiscal year?  
+  A: 20%  
+
+- Q: How many years has it been since WECOMMIT dummy Inc. was founded from now?  
+  A: 19 years  
+
+---
+
+DOCX Output
+The generated DOCX file includes structured sections with placeholders for each data field and summarizes the information presented in the PDF format.
 
 ---
