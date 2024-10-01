@@ -59,8 +59,15 @@ Features
    fastapi
    uvicorn
    tortoise-orm
+   aiofiles
+   pytest
+   tortoise
+   pydantic
+   fitz
+   PyPDF2
+   pytest
    reportlab
-   python-docx
+   docx
    ```
 4. Install the required packages**:
    ```bash
