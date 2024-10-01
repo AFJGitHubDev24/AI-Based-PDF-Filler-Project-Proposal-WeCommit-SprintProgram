@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI PDF Web App</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>FastAPI PDF Web App</h1>
+
+        <!-- PDF Upload Section -->
+        <section>
+            <h2>Upload a PDF</h2>
+            <form id="pdfForm" enctype="multipart/form-data">
+                <input type="file" id="pdfFile" name="pdf" accept="application/pdf">
+                <button type="submit">Upload and Process</button>
+            </form>
+            <div id="uploadResult"></div>
+        </section>
+
+        <!-- Knowledge Base Section -->
+        <section>
+            <h2>Knowledge Base</h2>
+            <table id="knowledgeTable">
+                <thead>
+                    <tr>
+                        <th>Field Name</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Knowledge Base Entries will be populated here -->
+                </tbody>
+            </table>
+            <form id="knowledgeForm">
+                <input type="text" id="field_name" placeholder="Field Name" required>
+                <input type="text" id="value" placeholder="Value" required>
+                <button type="submit">Add to Knowledge Base</button>
+            </form>
+        </section>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
