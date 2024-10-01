@@ -1,0 +1,22 @@
+project/
+│
+|-- app/
+│   |-- __init__.py          
+│   |-- main.py
+│   |-- models.py
+│   |-- utils.py
+│   |-- database.py
+│   |-- routers/
+│       |--__init__.py      
+│       |-- pdf.py
+│       |-- knowledge.py
+|-- static/
+|   |-- css
+|       |-- styles.css
+|   |-- js
+|       |-- app.js
+!-- templates/
+|   |-- index.html
+|-- tests/
+    |-- test_app.py
+    |-- Dummy Questionnaire.pdf
