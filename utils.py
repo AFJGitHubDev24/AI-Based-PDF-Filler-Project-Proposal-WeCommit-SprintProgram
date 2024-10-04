@@ -1,55 +1,35 @@
-import PyPDF2
-from PyPDF2.generic import NameObject, TextStringObject
-from app.models import KnowledgeBase
 import os
-import uuid
 from fastapi import UploadFile
+from PyPDF2 import PdfReader, PdfWriter
 
+# Directory for storing the processed PDFs
+PDF_DIR = "static/filled_pdfs/"
 
-def save_file(directory: str, file: UploadFile) -> str:
-    # Generate a unique file name
-    unique_filename = f"{uuid.uuid4()}_{file.filename}"
-    file_path = os.path.join(directory, unique_filename)
-
-    # Ensure the directory exists
-    os.makedirs(directory, exist_ok=True)
-
-    # Save the file to the directory
+# Save the uploaded PDF to a specific directory
+def save_file(directory: str, pdf: UploadFile):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    file_path = os.path.join(directory, pdf.filename)
     with open(file_path, "wb") as f:
-        f.write(file.file.read())
-
+        f.write(pdf.file.read())
     return file_path
 
+# Process the PDF by reading and modifying it using the knowledge base (simplified example)
 async def process_pdf(pdf_path: str) -> str:
-    try:
-        # Open the PDF file
-        with open(pdf_path, "rb") as pdf_file:
-            pdf_reader = PyPDF2.PdfReader(pdf_file)
-            output_pdf_path = pdf_path.replace(".pdf", "_filled.pdf")
+    # Read the PDF
+    reader = PdfReader(pdf_path)
+    writer = PdfWriter()
 
-            # Loop through pages to find form fields
-            if "/AcroForm" in pdf_reader.trailer["/Root"]:
-                form = pdf_reader.trailer["/Root"]["/AcroForm"]
-                fields = form.get("/Fields")
+    # Loop over all pages and copy them to a new writer (for now, a simple pass-through)
+    for page in reader.pages:
+        writer.add_page(page)
 
-                # Fill the fields with knowledge base values
-                for field in fields:
-                    field_obj = field.get_object()
-                    field_name = field_obj.get("/T")
-                    if field_name:
-                        # Query knowledge base for field_name
-                        knowledge_item = await KnowledgeBase.get_or_none(field_name=field_name)
-                        if knowledge_item:
-                            field_value = knowledge_item.value
-                            field_obj.update({
-                                NameObject("/V"): TextStringObject(field_value)
-                            })
+    # Output PDF filename
+    output_filename = f"filled_{os.path.basename(pdf_path)}"
+    output_path = os.path.join(PDF_DIR, output_filename)
 
-            # Save the modified PDF
-            with open(output_pdf_path, "wb") as output_pdf_file:
-                pdf_writer = PyPDF2.PdfWriter()
-                pdf_writer.write(output_pdf_file)
+    # Save the output PDF
+    with open(output_path, "wb") as f:
+        writer.write(f)
 
-            return output_pdf_path
-    except Exception as e:
-        raise RuntimeError(f"Failed to process PDF: {str(e)}")
+    return output_filename
