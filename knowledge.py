@@ -10,6 +10,10 @@ async def create_knowledge_base_item(item: KnowledgeBaseIn_Pydantic):
     obj = await KnowledgeBase.create(**item.dict())
     return await KnowledgeBase_Pydantic.from_tortoise_orm(obj)
 
+@router.get("/", response_model=list[KnowledgeBase_Pydantic])
+async def get_all_knowledge_base_items():
+    return await KnowledgeBase_Pydantic.from_queryset(KnowledgeBase.all())
+
 @router.get("/{item_id}", response_model=KnowledgeBase_Pydantic, responses={404: {"model": HTTPNotFoundError}})
 async def get_knowledge_base_item(item_id: int):
     obj = await KnowledgeBase_Pydantic.from_queryset_single(KnowledgeBase.get(id=item_id))
