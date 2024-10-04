@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FastAPI PDF Web App</title>
+    <title>FastAPI PDF Filler</title>
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>FastAPI PDF Web App</h1>
+        <h1>PDF Knowledge AI Filler</h1>
 
-        <!-- PDF Upload Section -->
-        <section>
+        <section id="uploadSection">
             <h2>Upload a PDF</h2>
-            <form id="pdfForm" enctype="multipart/form-data">
-                <input type="file" id="pdfFile" name="pdf" accept="application/pdf">
-                <button type="submit">Upload and Process</button>
+            <form id="pdfForm">
+                <input type="file" id="pdfFile" name="pdf" required>
+                <button type="submit">Upload PDF</button>
             </form>
             <div id="uploadResult"></div>
         </section>
 
-        <!-- Knowledge Base Section -->
-        <section>
+        <section id="knowledgeBaseSection">
             <h2>Knowledge Base</h2>
+            <form id="knowledgeForm">
+                <input type="text" id="field_name" name="field_name" placeholder="Field Name" required>
+                <input type="text" id="value" name="value" placeholder="Value" required>
+                <button type="submit">Add to Knowledge Base</button>
+            </form>
+
             <table id="knowledgeTable">
                 <thead>
                     <tr>
@@ -31,17 +35,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Knowledge Base Entries will be populated here -->
+                    <!-- Knowledge base items will be added here dynamically -->
                 </tbody>
             </table>
-            <form id="knowledgeForm">
-                <input type="text" id="field_name" placeholder="Field Name" required>
-                <input type="text" id="value" placeholder="Value" required>
-                <button type="submit">Add to Knowledge Base</button>
-            </form>
         </section>
     </div>
-
     <script src="/static/js/app.js"></script>
 </body>
 </html>
