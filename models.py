@@ -1,20 +1,18 @@
 from tortoise import fields
 from tortoise.models import Model
-from pydantic import BaseModel
+from tortoise.contrib.pydantic import pydantic_model_creator
 
 class KnowledgeBase(Model):
     id = fields.IntField(pk=True)
-    field_name = fields.CharField(max_length=255, unique=True)
+    field_name = fields.CharField(max_length=255)
     value = fields.TextField()
 
-class KnowledgeBaseIn_Pydantic(BaseModel):
-    field_name: str
-    value: str
+    class Meta:
+        table = "knowledge_base"
 
-class KnowledgeBase_Pydantic(BaseModel):
-    id: int
-    field_name: str
-    value: str
+    def __str__(self):
+        return self.field_name
 
-    class Config:
-        orm_mode = True
+# Pydantic models for serialization
+KnowledgeBase_Pydantic = pydantic_model_creator(KnowledgeBase, name="KnowledgeBase")
+KnowledgeBaseIn_Pydantic = pydantic_model_creator(KnowledgeBase, name="KnowledgeBaseIn", exclude_readonly=True)
