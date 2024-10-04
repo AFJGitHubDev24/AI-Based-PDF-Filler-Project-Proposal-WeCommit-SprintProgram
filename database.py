@@ -6,3 +6,6 @@ async def init():
         modules={"models": ["app.models"]}
     )
     await Tortoise.generate_schemas()
+
+async def close():
+    await Tortoise.close_connections()
