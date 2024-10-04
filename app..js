@@ -12,15 +12,20 @@ document.addEventListener("DOMContentLoaded", function() {
         formData.append("pdf", pdfFile);
 
         try {
-            const response = await fetch("/pdf/upload/", {
-                method: "POST",
-                body: formData
-            });
-            const data = await response.json();
-            uploadResult.innerHTML = `PDF uploaded: <a href="/pdf/download/${data.output_file}" target="_blank">Download Processed PDF</a>`;
-        } catch (error) {
-            uploadResult.innerHTML = "Error uploading PDF!";
-        }
+    const response = await fetch("/pdf/upload/", {
+        method: "POST",
+        body: formData
+    });
+    if (!response.ok) {
+        throw new Error("Upload failed");
+    }
+    const data = await response.json();
+    uploadResult.innerHTML = `PDF uploaded: <a href="/pdf/download/${data.output_file}" target="_blank">Download Processed PDF</a>`;
+} catch (error) {
+    console.error("Error:", error);  // Log the error to the console for more details
+    uploadResult.innerHTML = "Error uploading PDF!";
+}
+
     });
 
     // Handle knowledge base form submission
