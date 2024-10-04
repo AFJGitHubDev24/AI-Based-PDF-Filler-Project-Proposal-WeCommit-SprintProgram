@@ -19,7 +19,9 @@ async def upload_pdf(pdf: UploadFile = File(...)):
 
         return {"message": "PDF processed successfully", "output_file": output_pdf_path}
     except Exception as e:
+        print(f"Error: {str(e)}")  # Print or log the error
         raise HTTPException(status_code=500, detail=f"Error processing PDF: {str(e)}")
+
 
 @router.get("/download/{filename}", summary="Download a processed PDF")
 async def download_pdf(filename: str):
@@ -27,3 +29,4 @@ async def download_pdf(filename: str):
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="application/pdf", filename=filename)
     raise HTTPException(status_code=404, detail="File not found")
+
