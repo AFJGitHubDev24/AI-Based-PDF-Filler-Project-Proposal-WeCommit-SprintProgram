@@ -48,3 +48,11 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+#uploadResult {
+    margin-top: 10px;
+}
+
+#error {
+    color: red;
+}
