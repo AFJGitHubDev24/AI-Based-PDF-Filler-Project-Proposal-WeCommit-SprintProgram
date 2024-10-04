@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from app.routers import pdf, knowledge  # Adjusted import path
+from app.routers import pdf, knowledge
 from tortoise.contrib.fastapi import register_tortoise
 import os
 
