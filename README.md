@@ -177,5 +177,6 @@ The generated DOCX file includes structured sections with placeholders for each 
 ---
 
 # LICENSE 🪪
-This project is licensed under the [Creative Commons Zero v1.0 Universal](LICENSE).
+This project is licensed under [Creative Commons Zero v1.0 Universal](LICENSE).
+
 ---
