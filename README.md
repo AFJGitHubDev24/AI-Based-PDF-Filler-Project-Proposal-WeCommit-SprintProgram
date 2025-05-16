@@ -1,9 +1,9 @@
-# AI-Based-PDF-Filler-Project-Proposal-WeCommit-SprintProgram
+# AI-Based-PDF-Filler-Project-Proposal-WeCommit-SprintProgram 🤖📝
 
-Technical Documentation
+**Technical Documentation**
 
-Overview
-This FastAPI application generates PDF and DOCX files containing company information using data received from API requests. The application utilizes Tortoise ORM for database interactions and ReportLab for PDF generation. The data structure is validated using Pydantic models.
+_Overview
+_This FastAPI application generates PDF and DOCX files containing company information using data received from API requests. The application utilizes Tortoise ORM for database interactions and ReportLab for PDF generation. The data structure is validated using Pydantic models.
 
 Approaches and Algorithms
 
